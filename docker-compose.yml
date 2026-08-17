@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  lorie-site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: lorie-site:latest
+    container_name: lorie-site
+    restart: always
+    ports:
+      - "1888:80"
