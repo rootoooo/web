@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>皮皮虾</title>
-<link rel="icon" type="jpge"href="https://haoss.eu.org/ppx.jpg" />
+<link rel="icon" type="image/jpeg" href="https://haoss.eu.org/ppx.jpg">
 <meta name="description" content="梦里啥都有">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,8 +19,8 @@
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
     <a href="#home" class="brand">
-      <span class="brand-en">LORIÉ</span>
-      <span class="brand-cn">洛芮婚纱摄影</span>
+      <span class="brand-en" id="headerBrandEn">LORIÉ</span>
+      <span class="brand-cn" id="headerBrandCn">洛芮婚纱摄影</span>
     </a>
 
     <nav class="main-nav" id="mainNav">
@@ -41,7 +41,7 @@
   <!-- ============ HERO：胶片式自动向左滚动画廊 ============ -->
   <section class="hero" id="home">
     <div class="hero-intro">
-      <p class="hero-eyebrow">EST. LORIÉ STUDIO — FILM No. 00001&ndash;00009</p>
+      <p class="hero-eyebrow">EST. LORIÉ STUDIO — FILM No. 00001&ndash;00008</p>
       <h1 class="hero-title">用光影记录<br>一生一次的心动</h1>
       <p class="hero-sub">婚纱摄影 · 婚礼跟拍 · 主题人像&nbsp;&nbsp;|&nbsp;&nbsp;点击下方任意一帧胶片，查看完整作品</p>
     </div>
@@ -91,8 +91,8 @@
 <footer class="site-footer" id="contact">
   <div class="footer-inner">
     <div class="footer-brand">
-      <span class="brand-en">LORIÉ</span>
-      <p>洛芮婚纱摄影工作室<br>用光影，留住一生一次的心动。</p>
+      <span class="brand-en" id="footerBrandEn">LORIÉ</span>
+      <p id="footerBrandDesc">洛芮婚纱摄影工作室<br>用光影，留住一生一次的心动。</p>
     </div>
 
     <div class="footer-contact">
@@ -112,7 +112,7 @@
   </div>
 
   <div class="footer-bottom">
-    <p>&copy; <span id="year"></span> LORIÉ Studio. All rights reserved.</p>
+    <p>&copy; <span id="year"></span> <span id="footerCopyrightBrand">LORIÉ Studio</span>. All rights reserved.</p>
   </div>
 </footer>
 
@@ -132,6 +132,20 @@
     </div>
   </div>
 </div>
+
+<!-- ============ 背景音乐播放器（固定右下角） ============ -->
+<button class="music-toggle" id="musicToggle" aria-label="播放背景音乐" aria-pressed="false">
+  <svg class="music-disc" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="30" cy="30" r="27" fill="#1B1714"></circle>
+    <circle cx="30" cy="30" r="27" fill="none" stroke="#B8905A" stroke-width="1.4"></circle>
+    <circle cx="30" cy="30" r="19" fill="none" stroke="rgba(246,241,233,0.25)" stroke-width="1"></circle>
+    <circle cx="30" cy="30" r="13" fill="none" stroke="rgba(246,241,233,0.18)" stroke-width="1"></circle>
+    <circle cx="30" cy="30" r="7" fill="#6B1F2B"></circle>
+    <circle cx="30" cy="30" r="2.2" fill="#F6F1E9"></circle>
+  </svg>
+  <span class="music-icon-note" aria-hidden="true">&#9835;</span>
+</button>
+<audio id="bgMusic" loop preload="none"></audio>
 
 <script src="js/data.js"></script>
 <script src="js/script.js"></script>

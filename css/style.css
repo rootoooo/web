@@ -588,6 +588,67 @@ button:focus-visible{
 body.lightbox-locked{ overflow: hidden; }
 
 /* ============================================================
+   背景音乐按钮 — 固定在右下角，滚动页面时保持原位不动
+   ============================================================ */
+.music-toggle{
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  right: calc(24px + env(safe-area-inset-right, 0px));
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 800;
+  width: 60px; height: 60px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 8px 22px rgba(27,23,20,0.35);
+  transition: box-shadow .25s ease, transform .25s ease;
+}
+.music-toggle:hover{
+  box-shadow: 0 10px 28px rgba(27,23,20,0.45);
+  transform: translateY(-2px);
+}
+.music-toggle:active{ transform: translateY(0); }
+
+.music-disc{
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  animation: discspin 5s linear infinite;
+  animation-play-state: paused;
+}
+.music-toggle.is-playing .music-disc{ animation-play-state: running; }
+
+@keyframes discspin{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
+}
+
+.music-icon-note{
+  position:absolute;
+  font-size: 1.05rem;
+  color: var(--c-ivory);
+  pointer-events:none;
+  opacity: 0.9;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .music-disc{ animation: none !important; }
+}
+
+@media (max-width: 700px){
+  .music-toggle{
+    width: 52px; height: 52px;
+    right: calc(16px + env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+  .music-icon-note{ font-size: 0.92rem; }
+}
+
+/* ============================================================
    响应式 — 平板
    ============================================================ */
 @media (max-width: 960px){

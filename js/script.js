@@ -11,9 +11,28 @@
 
   const IMG_DIR = "img/";
 
-  /* ---------------- 渲染：品牌名 / 导航 ---------------- */
+  /* ----------------------------------------------------------------
+     关于"品牌名 / 网页标题"：
+     浏览器标签页标题（<title>）和 favicon 由 index.html 的 <head> 直接
+     控制，属于"一次性"设置，这里不会再用 js 覆盖它 —— 这样你在 HTML 里
+     改了标题，就会一直生效，不会被脚本改回去。
+     页面里可见的"品牌名"（导航栏 Logo、页脚品牌名）则统一从下面的
+     SITE_DATA 读取，方便以后只改一个地方就能同步更新。
+     ---------------------------------------------------------------- */
   function renderBrandAndNav() {
-    document.title = `${SITE_DATA.brandName} ${SITE_DATA.brandNameEn} · ${SITE_DATA.brandTagline}`;
+    const setText = (id, text) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    };
+    setText("headerBrandEn", SITE_DATA.brandNameEn);
+    setText("headerBrandCn", SITE_DATA.brandName + SITE_DATA.brandTagline);
+    setText("footerBrandEn", SITE_DATA.brandNameEn);
+    setText("footerCopyrightBrand", `${SITE_DATA.brandNameEn} Studio`);
+
+    const footerDesc = document.getElementById("footerBrandDesc");
+    if (footerDesc) {
+      footerDesc.innerHTML = `${SITE_DATA.brandName}${SITE_DATA.brandTagline}<br>用光影，留住一生一次的心动。`;
+    }
   }
 
   /* ---------------- 渲染：顶部胶片画廊 ---------------- */
@@ -169,6 +188,50 @@
     );
   }
 
+  /* ---------------- 背景音乐：右下角固定按钮，点击切换播放/暂停 ---------------- */
+  function initMusic() {
+    const btn = document.getElementById("musicToggle");
+    const audio = document.getElementById("bgMusic");
+    if (!btn || !audio || !SITE_DATA.music || !SITE_DATA.music.src) return;
+
+    audio.src = SITE_DATA.music.src;
+    audio.loop = true;
+
+    function setPlayingState(isPlaying) {
+      btn.classList.toggle("is-playing", isPlaying);
+      btn.setAttribute("aria-pressed", String(isPlaying));
+      btn.setAttribute("aria-label", isPlaying ? "暂停背景音乐" : "播放背景音乐");
+    }
+
+    function tryPlay() {
+      const playPromise = audio.play();
+      if (playPromise && typeof playPromise.then === "function") {
+        playPromise
+          .then(() => setPlayingState(true))
+          .catch(() => {
+            // 浏览器拦截了自动播放（这是浏览器策略，不是故障），
+            // 保持"暂停"图标，等待用户第一次点击后再开始播放。
+            setPlayingState(false);
+          });
+      }
+    }
+
+    btn.addEventListener("click", () => {
+      if (audio.paused) {
+        tryPlay();
+      } else {
+        audio.pause();
+        setPlayingState(false);
+      }
+    });
+
+    if (SITE_DATA.music.autoplay) {
+      tryPlay();
+    } else {
+      setPlayingState(false);
+    }
+  }
+
   /* ---------------- 初始化 ---------------- */
   document.addEventListener("DOMContentLoaded", () => {
     renderBrandAndNav();
@@ -177,5 +240,6 @@
     renderAboutAndContact();
     initLightbox();
     initHeader();
+    initMusic();
   });
 })();
