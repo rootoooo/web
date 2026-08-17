@@ -9,4 +9,4 @@ services:
     container_name: lorie-site
     restart: always
     ports:
-      - "1888:80"
+      - "${PORT:-1888}:80"
