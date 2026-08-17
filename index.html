@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>洛芮 LORIÉ · 婚纱摄影工作室</title>
+<meta name="description" content="洛芮婚纱摄影工作室 —— 专注婚纱摄影、婚礼跟拍与主题人像创作。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@500;600;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ 顶部导航 ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#home" class="brand">
+      <span class="brand-en">LORIÉ</span>
+      <span class="brand-cn">洛芮婚纱摄影</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#home">首页</a>
+      <a href="#gallery">作品与服务</a>
+      <a href="#about">关于我们</a>
+      <a href="#contact">联系我们</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO：胶片式自动向左滚动画廊 ============ -->
+  <section class="hero" id="home">
+    <div class="hero-intro">
+      <p class="hero-eyebrow">EST. LORIÉ STUDIO — FILM No. 00001&ndash;00008</p>
+      <h1 class="hero-title">用光影记录<br>一生一次的心动</h1>
+      <p class="hero-sub">婚纱摄影 · 婚礼跟拍 · 主题人像&nbsp;&nbsp;|&nbsp;&nbsp;点击下方任意一帧胶片，查看完整作品</p>
+    </div>
+
+    <div class="filmstrip-wrap">
+      <div class="filmstrip-track" id="filmstripTrack">
+        <!-- JS 自动生成胶片帧，内容来自 js/data.js -->
+      </div>
+    </div>
+
+    <a href="#gallery" class="scroll-cue" aria-label="向下滚动查看更多">
+      <span></span>
+      向下滚动
+    </a>
+  </section>
+
+  <!-- ============ 图文介绍列表 ============ -->
+  <section class="gallery" id="gallery">
+    <div class="section-head">
+      <p class="section-eyebrow">OUR WORK &amp; SERVICES</p>
+      <h2 class="section-title">作品与服务</h2>
+      <p class="section-desc">从婚纱摄影到企业形象人像，八项核心服务，均可点击顶部胶片查看大图。</p>
+    </div>
+
+    <div class="item-list" id="itemList">
+      <!-- JS 自动生成图文行，内容来自 js/data.js -->
+    </div>
+  </section>
+
+  <!-- ============ 关于我们 ============ -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <p class="section-eyebrow">ABOUT LORIÉ</p>
+      <h2 class="about-title" id="aboutTitle"></h2>
+      <p class="about-body" id="aboutBody"></p>
+      <div class="about-stats">
+        <div class="stat"><span class="stat-num">12</span><span class="stat-label">年行业经验</span></div>
+        <div class="stat"><span class="stat-num">3,600+</span><span class="stat-label">服务客户</span></div>
+        <div class="stat"><span class="stat-num">8</span><span class="stat-label">核心拍摄场景</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ 页脚 / 联系方式 ============ -->
+<footer class="site-footer" id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-en">LORIÉ</span>
+      <p>洛芮婚纱摄影工作室<br>用光影，留住一生一次的心动。</p>
+    </div>
+
+    <div class="footer-contact">
+      <h3>联系我们</h3>
+      <p id="contactPhone"></p>
+      <p id="contactEmail"></p>
+      <p id="contactAddress"></p>
+      <p id="contactHours"></p>
+    </div>
+
+    <div class="footer-nav">
+      <h3>快速导航</h3>
+      <a href="#home">首页</a>
+      <a href="#gallery">作品与服务</a>
+      <a href="#about">关于我们</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; <span id="year"></span> LORIÉ Studio. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ============ 图片弹窗 / Lightbox ============ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+  <div class="lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+    <button class="lightbox-close" id="lightboxClose" aria-label="关闭">&times;</button>
+    <div class="lightbox-img-wrap">
+      <img id="lightboxImg" src="" alt="">
+      <span class="lightbox-frame-no" id="lightboxFrameNo"></span>
+    </div>
+    <div class="lightbox-text">
+      <p class="lightbox-tag" id="lightboxTag"></p>
+      <h3 id="lightboxTitle"></h3>
+      <p id="lightboxDesc"></p>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
